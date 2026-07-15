@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nana Buruquê — Chatbot Nanã | Projeto Acadêmico e Social</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     DESIGN TOKENS
+     ========================================================= */
+  :root{
+    --gold:        #E5BA2D;
+    --terracotta:  #EC7949;
+    --sage:        #56796D;
+    --olive:       #75741B;
+    --off-white:   #F1F0E7;
+    --deep-brown:  #4C2F1A;
+
+    --ink:         #2B1B10;
+    --ink-soft:    #5A4A3C;
+    --surface:     #FFFFFF;
+    --border-soft: rgba(76,47,26,0.14);
+
+    --font-script: "Alex Brush", cursive;   /* stand-in for the brand's licensed "Madelyn" script */
+    --font-display: "Manrope", -apple-system, sans-serif;
+    --font-body: "Manrope", -apple-system, sans-serif; /* stand-in for the brand's licensed "TT Interphases" */
+
+    --radius-s: 6px;
+    --radius-m: 14px;
+    --radius-l: 28px;
+
+    --shadow: 0 12px 32px rgba(76,47,26,0.14);
+    --container: 1180px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    background:var(--off-white);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:var(--font-display);
+    color:var(--deep-brown);
+    margin:0 0 .5em;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    line-height:1.15;
+  }
+  p{ margin:0 0 1em; color:var(--ink-soft); }
+
+  /* Brand signature script — used sparingly for emotional / brand
+     moments, mirroring how the identity uses Madelyn only for the
+     logo and hero headlines, never for dense reading content. */
+  .script{
+    font-family:var(--font-script);
+    font-weight:400;
+    color:var(--gold);
+    line-height:1;
+  }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+  button{ font-family:inherit; cursor:pointer; }
+  .container{ max-width:var(--container); margin:0 auto; padding:0 24px; }
+  ::selection{ background:var(--gold); color:var(--deep-brown); }
+  :focus-visible{ outline:3px solid var(--terracotta); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* =========================================================
+     SIGNATURE ELEMENT — kente strip divider (SVG pattern)
+     A repeating triangle motif used sparingly at section seams
+     and as a decorative rail, echoing woven kente/adire cloth.
+     ========================================================= */
+  .kente-strip{
+    height:14px;
+    width:100%;
+    background-image:
+      linear-gradient(135deg, var(--gold) 25%, transparent 25%),
+      linear-gradient(225deg, var(--terracotta) 25%, transparent 25%),
+      linear-gradient(45deg, var(--sage) 25%, transparent 25%),
+      linear-gradient(315deg, var(--olive) 25%, var(--deep-brown) 25%);
+    background-position: 0 0, 0 0, 7px 0, 7px 0;
+    background-size: 14px 14px;
+    background-repeat:repeat-x;
+  }
+
+  .diamond-mark{
+    display:inline-block;
+    width:9px; height:9px;
+    background:var(--terracotta);
+    transform:rotate(45deg);
+    margin-right:12px;
+    flex-shrink:0;
+  }
+
+  /* =========================================================
+     HEADER / NAV
+     ========================================================= */
+  .site-header{
+    position:sticky; top:0; z-index:100;
+    background:var(--deep-brown);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+    max-width:var(--container); margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px;
+    text-decoration:none;
+  }
+  .brand img.logo-img{
+    height:40px;
+    width:auto;
+    display:block;
+  }
+  .brand-mark{
+    width:34px; height:34px;
+    border-radius:50%;
+    background:conic-gradient(from 45deg, var(--gold), var(--terracotta), var(--sage), var(--olive), var(--gold));
+    flex-shrink:0;
+  }
+  .brand-mark svg{ width:100%; height:100%; }
+
+  /* Decorative olive blobs — echoes the soft circular accents
+     behind the mascot in the brand's own homepage mockup */
+  .blob-field{ position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none; }
+  .blob{ position:absolute; border-radius:50%; background:var(--olive); opacity:.16; }
+
+  nav.primary-nav{
+    display:flex; gap:4px;
+  }
+  nav.primary-nav button{
+    background:none; border:none;
+    color:var(--off-white);
+    opacity:.75;
+    font-size:.92rem;
+    font-weight:500;
+    padding:10px 16px;
+    border-radius:999px;
+    transition:all .2s ease;
+    white-space:nowrap;
+  }
+  nav.primary-nav button:hover{ opacity:1; background:rgba(241,240,231,0.08); }
+  nav.primary-nav button.active{
+    opacity:1;
+    background:var(--gold);
+    color:var(--deep-brown);
+    font-weight:600;
+  }
+
+  .menu-toggle{
+    display:none;
+    background:none; border:1px solid var(--off-white);
+    color:var(--off-white);
+    padding:8px 12px; border-radius:var(--radius-s);
+    font-size:1.1rem;
+  }
+
+  @media (max-width: 880px){
+    nav.primary-nav{
+      display:none;
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--deep-brown);
+      flex-direction:column;
+      padding:8px 24px 20px;
+      gap:4px;
+    }
+    nav.primary-nav.open{ display:flex; }
+    nav.primary-nav button{ text-align:left; width:100%; }
+    .menu-toggle{ display:block; }
+    .site-header{ position:sticky; }
+  }
+
+  /* =========================================================
+     PAGE / TAB SWITCHING
+     ========================================================= */
+  .page{ display:none; animation:fadeIn .35s ease; }
+  .page.active{ display:block; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  section.block{ padding:72px 0; }
+  section.block.tight{ padding:56px 0; }
+  .eyebrow{
+    display:flex; align-items:center;
+    text-transform:uppercase;
+    font-size:.78rem;
+    letter-spacing:.14em;
+    font-weight:600;
+    color:var(--sage);
+    margin-bottom:14px;
+  }
+
+  /* =========================================================
+     HERO (Home) — matches the brand's own homepage mockup:
+     off-white canvas, soft olive blobs, mascot illustration,
+     dark-brown headline with a gold script accent word.
+     ========================================================= */
+  .hero{
+    background:var(--off-white);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    align-items:center;
+    min-height:560px;
+    position:relative;
+    z-index:1;
+  }
+  .hero-copy{
+    padding:80px 48px 80px 24px;
+    display:flex; flex-direction:column; justify-content:center;
+    max-width:620px;
+  }
+  .hero-copy .eyebrow{ color:var(--sage); }
+  .hero-copy h1{
+    color:var(--deep-brown);
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.08;
+  }
+  .hero-copy h1 .script{
+    display:block;
+    font-size:1.5em;
+    margin-top:.1em;
+  }
+  .hero-copy p.lead{
+    color:var(--ink-soft);
+    font-size:1.08rem;
+    max-width:480px;
+  }
+  .hero-actions{ display:flex; gap:14px; margin-top:12px; flex-wrap:wrap; }
+
+  .hero-visual{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    min-height:360px;
+    padding:32px;
+  }
+  .hero-visual img.mascot{
+    position:relative; z-index:1;
+    max-width:340px;
+    width:100%;
+    filter:drop-shadow(0 20px 30px rgba(76,47,26,0.18));
+  }
+  .blob-1{ width:280px; height:280px; top:8%;  right:8%; }
+  .blob-2{ width:180px; height:180px; bottom:6%; right:22%; background:var(--sage); opacity:.14; }
+  .blob-3{ width:120px; height:120px; top:38%; right:0; background:var(--terracotta); opacity:.12; }
+
+  @media (max-width:880px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-copy{ padding:56px 24px 16px; max-width:none; }
+    .hero-visual{ min-height:280px; }
+    .hero-visual img.mascot{ max-width:240px; }
+  }
+
+  /* buttons */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.95rem;
+    text-decoration:none;
+    border:2px solid transparent;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--terracotta); color:var(--off-white); }
+  .btn-primary:hover{ box-shadow:0 10px 24px rgba(236,121,73,0.35); }
+  .btn-outline{ border-color:rgba(241,240,231,0.5); color:var(--off-white); background:transparent; }
+  .btn-outline:hover{ border-color:var(--gold); color:var(--gold); }
+  .btn-outline-dark{ border-color:rgba(76,47,26,0.35); color:var(--deep-brown); background:transparent; }
+  .btn-outline-dark:hover{ border-color:var(--terracotta); color:var(--terracotta); }
+  .btn-dark{ background:var(--deep-brown); color:var(--off-white); }
+  .btn-dark:hover{ box-shadow:0 10px 24px rgba(76,47,26,0.3); }
+
+  /* =========================================================
+     INTRO SECTION
+     ========================================================= */
+  .intro-grid{
+    display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:start;
+  }
+  .intro-grid h2{ font-size:2rem; }
+  .intro-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:24px; }
+  .stat-card{
+    background:var(--surface); border:1px solid var(--border-soft);
+    border-radius:var(--radius-m); padding:20px 18px;
+  }
+  .stat-card .num{ font-family:var(--font-display); font-size:1.8rem; color:var(--terracotta); font-weight:700; }
+  .stat-card .label{ font-size:.82rem; color:var(--ink-soft); }
+  @media (max-width:880px){
+    .intro-grid{ grid-template-columns:1fr; gap:32px; }
+    .intro-stats{ grid-template-columns:1fr 1fr; }
+  }
+
+  /* =========================================================
+     CHATBOT WIDGET (shared component: mini on Home, full on tab)
+     ========================================================= */
+  .chat-panel{
+    background:var(--surface);
+    border-radius:var(--radius-l);
+    box-shadow:var(--shadow);
+    border:1px solid var(--border-soft);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .chat-panel.mini{ height:440px; }
+  .chat-panel.full{ height:620px; }
+  .chat-head{
+    background:var(--deep-brown);
+    color:var(--off-white);
+    padding:16px 20px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .chat-head .avatar{
+    width:38px; height:38px; border-radius:50%;
+    background:conic-gradient(from 45deg, var(--gold), var(--terracotta), var(--sage), var(--olive), var(--gold));
+    flex-shrink:0;
+  }
+  .chat-head .title{ font-weight:600; font-size:.98rem; }
+  .chat-head .status{ font-size:.76rem; color:var(--gold); display:flex; align-items:center; gap:6px; }
+  .chat-head .status::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--gold); display:inline-block; }
+
+  .chat-body{
+    flex:1; overflow-y:auto;
+    padding:20px;
+    display:flex; flex-direction:column; gap:12px;
+    background:
+      repeating-linear-gradient(45deg, rgba(86,121,109,0.03) 0 16px, transparent 16px 32px),
+      var(--off-white);
+  }
+  .msg{
+    max-width:78%;
+    padding:11px 16px;
+    border-radius:var(--radius-m);
+    font-size:.92rem;
+    line-height:1.5;
+  }
+  .msg.bot{
+    background:var(--surface);
+    border:1px solid var(--border-soft);
+    align-self:flex-start;
+    border-bottom-left-radius:4px;
+    color:var(--ink);
+  }
+  .msg.user{
+    background:var(--sage);
+    color:var(--off-white);
+    align-self:flex-end;
+    border-bottom-right-radius:4px;
+  }
+  .chat-input-row{
+    display:flex; gap:10px;
+    padding:14px 16px;
+    border-top:1px solid var(--border-soft);
+    background:var(--surface);
+  }
+  .chat-input-row input{
+    flex:1;
+    border:1px solid var(--border-soft);
+    border-radius:999px;
+    padding:12px 18px;
+    font-family:inherit;
+    font-size:.92rem;
+    background:var(--off-white);
+    color:var(--ink);
+  }
+  .chat-input-row input:focus{ outline:2px solid var(--terracotta); }
+  .chat-send{
+    width:44px; height:44px; border-radius:50%;
+    background:var(--terracotta); color:var(--off-white);
+    border:none; display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .chat-send:hover{ background:var(--gold); color:var(--deep-brown); }
+
+  .chat-note{
+    font-size:.78rem; color:var(--ink-soft);
+    padding:8px 20px 0;
+    font-style:italic;
+  }
+
+  .chat-iframe{
+    width:100%;
+    height:100%;
+    border:none;
+    flex:1;
+    background:var(--surface);
+  }
+
+  /* Full chatbot page layout */
+  .chatbot-page-grid{
+    display:grid; grid-template-columns:.85fr 1.35fr; gap:40px; align-items:start;
+  }
+  .chatbot-howto{
+    background:var(--surface); border-radius:var(--radius-m);
+    border:1px solid var(--border-soft); padding:28px;
+  }
+  .chatbot-howto ol{ padding-left:20px; color:var(--ink-soft); }
+  .chatbot-howto li{ margin-bottom:10px; }
+  @media (max-width:960px){
+    .chatbot-page-grid{ grid-template-columns:1fr; }
+  }
+
+  /* =========================================================
+     DARK SECTION VARIANT
+     ========================================================= */
+  .section-dark{
+    background:var(--deep-brown);
+    color:var(--off-white);
+  }
+  .section-dark h2, .section-dark h3{ color:var(--off-white); }
+  .section-dark p{ color:rgba(241,240,231,0.78); }
+  .section-alt{ background:#EAE8DA; }
+
+  /* =========================================================
+     R&D PAGE
+     ========================================================= */
+  .rd-columns{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:40px;
+  }
+  .rd-block{
+    background:var(--surface); border-radius:var(--radius-m);
+    border:1px solid var(--border-soft); padding:30px;
+  }
+  .rd-block h3{ display:flex; align-items:center; font-size:1.2rem; }
+  .placeholder-text{
+    border:1px dashed var(--border-soft);
+    border-radius:var(--radius-s);
+    padding:16px 18px;
+    color:var(--ink-soft);
+    font-size:.9rem;
+    background:rgba(86,121,109,0.04);
+  }
+  @media (max-width:880px){ .rd-columns{ grid-template-columns:1fr; } }
+
+  .timeline{ margin-top:16px; border-left:2px solid var(--gold); padding-left:24px; display:flex; flex-direction:column; gap:26px; }
+  .timeline-item{ position:relative; }
+  .timeline-item::before{
+    content:""; position:absolute; left:-31px; top:4px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--terracotta); border:3px solid var(--off-white);
+    box-shadow:0 0 0 2px var(--terracotta);
+  }
+  .timeline-item .tl-date{ font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--olive); font-weight:600; }
+  .timeline-item h4{ margin:4px 0 6px; font-size:1.05rem; }
+
+  /* =========================================================
+     TEAM GRID
+     ========================================================= */
+  .team-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
+  }
+  .team-card{
+    background:var(--surface); border-radius:var(--radius-m);
+    border:1px solid var(--border-soft); overflow:hidden;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .team-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+  .team-photo{
+    aspect-ratio:1/1;
+    background:
+      repeating-linear-gradient(135deg, rgba(229,186,45,0.18) 0 12px, transparent 12px 24px),
+      linear-gradient(160deg, var(--sage), var(--deep-brown));
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(241,240,231,0.85);
+    font-size:.78rem; text-transform:uppercase; letter-spacing:.08em;
+  }
+  .team-info{ padding:20px; }
+  .team-info h4{ margin:0 0 2px; font-size:1.05rem; color:var(--deep-brown); }
+  .team-role{
+    font-size:.78rem; font-weight:600; text-transform:uppercase;
+    letter-spacing:.06em; color:var(--terracotta); margin-bottom:10px; display:block;
+  }
+  .team-bio{ font-size:.88rem; color:var(--ink-soft); margin:0; }
+  @media (max-width:960px){ .team-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:620px){ .team-grid{ grid-template-columns:1fr; } }
+
+  /* =========================================================
+     HISTORY / CONTEXT PAGE
+     ========================================================= */
+  .history-hero{
+    padding:64px 0 32px;
+    text-align:center;
+  }
+  .history-hero h1{ font-size:clamp(2rem,4vw,2.8rem); }
+  .history-hero p{ max-width:640px; margin:0 auto; }
+
+  .history-section{
+    padding:64px 0;
+    border-top:1px solid var(--border-soft);
+  }
+  .history-section:nth-of-type(even){ background:#EAE8DA; }
+  .history-head{
+    display:flex; align-items:baseline; gap:16px; margin-bottom:8px;
+    flex-wrap:wrap;
+  }
+  .history-num{
+    font-family:var(--font-display); font-size:2.6rem; color:var(--gold);
+    font-weight:700; line-height:1;
+  }
+  .history-section h2{ font-size:1.9rem; margin-bottom:4px; }
+  .history-sub{ color:var(--sage); font-weight:600; font-size:.85rem; text-transform:uppercase; letter-spacing:.08em; }
+  .history-copy{
+    max-width:760px; margin-top:22px;
+  }
+  .history-copy .placeholder-text{ margin-bottom:14px; }
+  blockquote.quote-placeholder{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--deep-brown);
+    border-left:4px solid var(--terracotta);
+    padding-left:22px;
+    margin:26px 0;
+  }
+
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+  footer.site-footer{
+    background:var(--deep-brown);
+    color:rgba(241,240,231,0.75);
+    padding:40px 0 28px;
+    font-size:.85rem;
+  }
+  .footer-row{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:12px;
+  }
+  footer.site-footer strong{ color:var(--off-white); }
+
+  /* Section heading helper */
+  .heading-row{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:32px; }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     HEADER / NAVIGATION
+     ========================================================= -->
+<header class="site-header">
+  <div class="nav-row">
+    <a href="#" class="brand" data-nav="home">
+      <img class="logo-img" src="assets/logo-wordmark.png" alt="Nana Buruquê">
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰ Menu</button>
+    <nav class="primary-nav" id="primaryNav">
+      <button data-nav="home" class="active">Início</button>
+      <button data-nav="chatbot">Chatbot Nanã</button>
+      <button data-nav="research">Pesquisa &amp; Desenvolvimento</button>
+      <button data-nav="team">Equipe de Pesquisa</button>
+      <button data-nav="history">Contexto &amp; História</button>
+    </nav>
+  </div>
+  <div class="kente-strip"></div>
+</header>
+
+<main>
+
+  <!-- =========================================================
+       PAGE: HOME
+       ========================================================= -->
+  <div class="page active" id="page-home">
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Projeto acadêmico &amp; social</div>
+          <h1>Conversas que carregam<span class="script">memória, cultura&nbsp;e cuidado</span></h1>
+          <p class="lead">[Placeholder — texto de abertura do projeto: apresente em 2–3 frases a proposta da Nana Buruquê, seu propósito social e sua base acadêmica.]</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-nav="chatbot">Conversar com Nanã</button>
+            <button class="btn btn-outline-dark" data-nav="research">Conhecer a pesquisa</button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="blob-field">
+            <span class="blob blob-1"></span>
+            <span class="blob blob-2"></span>
+            <span class="blob blob-3"></span>
+          </div>
+          <img class="mascot" src="assets/mascot-sitting.png" alt="Ilustração de Nanã, a avó sábia que conduz o chatbot">
+        </div>
+      </div>
+    </section>
+    <div class="kente-strip"></div>
+
+    <!-- INTRO ABOUT THE PROJECT -->
+    <section class="block">
+      <div class="container intro-grid">
+        <div>
+          <div class="eyebrow">Sobre o projeto</div>
+          <h2>Quem é Nanã?</h2>
+          <p class="placeholder-text">[Placeholder — parágrafo introdutório sobre o projeto: contexto institucional, motivação, público-alvo e objetivos gerais da iniciativa. Este texto deve situar o leitor sobre por que a chatbot existe e a quem ela serve.]</p>
+          <p class="placeholder-text">[Placeholder — segundo parágrafo: metodologia geral, parcerias envolvidas e ligação com os temas de racismo estrutural, diáspora africana e história de Campinas.]</p>
+          <div class="intro-stats">
+            <div class="stat-card"><div class="num">00</div><div class="label">Pesquisadores envolvidos</div></div>
+            <div class="stat-card"><div class="num">00</div><div class="label">Meses de desenvolvimento</div></div>
+            <div class="stat-card"><div class="num">00</div><div class="label">Fontes históricas revisadas</div></div>
+          </div>
+        </div>
+        <div>
+          <!-- EMBEDDED CHATBOT ON HOMEPAGE (live iframe) -->
+          <div class="chat-panel mini">
+            <iframe class="chat-iframe" src="https://chatbot-afa.vercel.app/" title="Chatbot Nanã" loading="lazy" allow="clipboard-write"></iframe>
+          </div>
+          <div style="text-align:center; margin-top:16px;">
+            <button class="btn btn-dark" data-nav="chatbot">Abrir experiência completa</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================================
+       PAGE: CHATBOT NANÃ (TAB 1)
+       ========================================================= -->
+  <div class="page" id="page-chatbot">
+    <section class="block tight" style="background:var(--off-white);">
+      <div class="container" style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
+        <img src="assets/avatar-circle.png" alt="Nanã" style="width:88px; height:auto; flex-shrink:0;">
+        <div>
+          <div class="eyebrow">Tab 1 · <span class="script" style="font-size:1.3em;">nanã chatbot</span></div>
+          <h1>Pergunta sem medo, meu bem</h1>
+          <p style="max-width:640px;">[Placeholder — texto de apresentação da experiência conversacional: o que Nanã é capaz de fazer, com qual propósito educativo e social, e como os usuários podem tirar melhor proveito da interação.]</p>
+        </div>
+      </div>
+    </section>
+    <div class="kente-strip"></div>
+
+    <section class="block">
+      <div class="container chatbot-page-grid">
+        <div class="chatbot-howto">
+          <h3>Como conversar com a Nanã</h3>
+          <ol>
+            <li>[Placeholder — passo 1: como iniciar a conversa]</li>
+            <li>[Placeholder — passo 2: tipos de pergunta recomendados]</li>
+            <li>[Placeholder — passo 3: limites e cuidados éticos da IA]</li>
+            <li>[Placeholder — passo 4: como reportar problemas ou dar feedback]</li>
+          </ol>
+          <div class="placeholder-text" style="margin-top:20px;">[Placeholder — nota sobre privacidade e uso responsável dos dados da conversa.]</div>
+        </div>
+
+        <div class="chat-panel full">
+          <iframe class="chat-iframe" src="https://chatbot-afa.vercel.app/" title="Chatbot Nanã" loading="lazy" allow="clipboard-write"></iframe>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================================
+       PAGE: RESEARCH & DEVELOPMENT (TAB 2)
+       ========================================================= -->
+  <div class="page" id="page-research">
+    <section class="block tight section-alt">
+      <div class="container">
+        <div class="eyebrow">Tab 2</div>
+        <h1>Pesquisa &amp; Desenvolvimento</h1>
+        <p style="max-width:680px;">[Placeholder — introdução geral sobre a base científica e acadêmica do desenvolvimento da Chatbot Nanã.]</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="container">
+        <div class="rd-columns">
+          <div class="rd-block">
+            <h3><span class="diamond-mark"></span>Fundamentação teórica</h3>
+            <div class="placeholder-text">[Placeholder — referencial teórico: linhas de pesquisa, autores e conceitos que embasam o projeto.]</div>
+          </div>
+          <div class="rd-block">
+            <h3><span class="diamond-mark"></span>Metodologia de desenvolvimento</h3>
+            <div class="placeholder-text">[Placeholder — descrição da metodologia: etapas de construção da IA, validação de conteúdo, revisão por especialistas.]</div>
+          </div>
+          <div class="rd-block">
+            <h3><span class="diamond-mark"></span>Curadoria de conteúdo</h3>
+            <div class="placeholder-text">[Placeholder — processo de curadoria histórica e cultural utilizado para treinar/orientar as respostas da chatbot.]</div>
+          </div>
+          <div class="rd-block">
+            <h3><span class="diamond-mark"></span>Avaliação &amp; ética</h3>
+            <div class="placeholder-text">[Placeholder — critérios de avaliação de qualidade, comitês de ética envolvidos e testes com usuários.]</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="kente-strip"></div>
+
+    <section class="block section-alt">
+      <div class="container">
+        <h2>Marcos do projeto</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="tl-date">[Placeholder — data]</div>
+            <h4>[Placeholder — título do marco]</h4>
+            <p class="placeholder-text">[Placeholder — descrição do marco de desenvolvimento.]</p>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-date">[Placeholder — data]</div>
+            <h4>[Placeholder — título do marco]</h4>
+            <p class="placeholder-text">[Placeholder — descrição do marco de desenvolvimento.]</p>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-date">[Placeholder — data]</div>
+            <h4>[Placeholder — título do marco]</h4>
+            <p class="placeholder-text">[Placeholder — descrição do marco de desenvolvimento.]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================================
+       PAGE: RESEARCH TEAM (TAB 3)
+       ========================================================= -->
+  <div class="page" id="page-team">
+    <section class="block tight">
+      <div class="container">
+        <div class="eyebrow">Tab 3</div>
+        <h1>Equipe de Pesquisa</h1>
+        <p style="max-width:680px;">[Placeholder — texto introdutório sobre a equipe multidisciplinar responsável pelo projeto.]</p>
+      </div>
+    </section>
+
+    <section class="block" style="padding-top:0;">
+      <div class="container">
+        <div class="team-grid" id="teamGrid">
+          <!-- 6 placeholder profile cards -->
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================================
+       PAGE: CONTEXT & HISTORY (TAB 4)
+       ========================================================= -->
+  <div class="page" id="page-history">
+    <div class="history-hero container">
+      <div class="eyebrow" style="justify-content:center;">Tab 4</div>
+      <h1>Contexto &amp; História</h1>
+      <p>[Placeholder — texto de abertura explicando por que compreender racismo estrutural, diáspora africana e a história local de Campinas é essencial para o projeto.]</p>
+    </div>
+    <div class="kente-strip"></div>
+
+    <!-- SUB-SECTION 1 -->
+    <section class="history-section">
+      <div class="container">
+        <div class="history-head">
+          <span class="history-num">01</span>
+          <div>
+            <div class="history-sub">Conceitos fundamentais</div>
+            <h2>Racismo Estrutural</h2>
+          </div>
+        </div>
+        <div class="history-copy">
+          <div class="placeholder-text">[Placeholder — definição e conceitos centrais sobre racismo estrutural: origem do termo, principais autores e como ele se manifesta institucionalmente.]</div>
+          <blockquote class="quote-placeholder">[Placeholder — citação de referência sobre racismo estrutural]</blockquote>
+          <div class="placeholder-text">[Placeholder — texto complementar: dados, exemplos contemporâneos e relação com políticas públicas.]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUB-SECTION 2 -->
+    <section class="history-section">
+      <div class="container">
+        <div class="history-head">
+          <span class="history-num">02</span>
+          <div>
+            <div class="history-sub">Memória &amp; formação social</div>
+            <h2>Diáspora Africana &amp; História no Brasil</h2>
+          </div>
+        </div>
+        <div class="history-copy">
+          <div class="placeholder-text">[Placeholder — panorama histórico da diáspora africana e sua chegada forçada ao Brasil, incluindo rotas, povos e legados culturais.]</div>
+          <blockquote class="quote-placeholder">[Placeholder — citação de referência histórica]</blockquote>
+          <div class="placeholder-text">[Placeholder — texto complementar: resistência, quilombos, contribuições culturais e sociais que moldam o Brasil contemporâneo.]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUB-SECTION 3 -->
+    <section class="history-section">
+      <div class="container">
+        <div class="history-head">
+          <span class="history-num">03</span>
+          <div>
+            <div class="history-sub">Memória local</div>
+            <h2>A História de Campinas</h2>
+          </div>
+        </div>
+        <div class="history-copy">
+          <div class="placeholder-text">[Placeholder — a construção da cidade de Campinas no contexto da escravidão: economia cafeeira, mão de obra escravizada e formação urbana.]</div>
+          <blockquote class="quote-placeholder">[Placeholder — citação/registro histórico sobre Campinas]</blockquote>
+          <div class="placeholder-text">[Placeholder — texto complementar: marcos, bairros, e legados dessa história na Campinas atual.]</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<div class="kente-strip"></div>
+<footer class="site-footer">
+  <div class="container footer-row">
+    <div><strong>CHATBOT NANÃ</strong> — Projeto Acadêmico e Social</div>
+    <div>[Placeholder — instituição / ano / créditos]</div>
+  </div>
+</footer>
+
+<script>
+  // ===========================================================
+  // NAVIGATION / TAB SWITCHING
+  // ===========================================================
+  const navButtons = document.querySelectorAll('[data-nav]');
+  const pages = document.querySelectorAll('.page');
+  const primaryNav = document.getElementById('primaryNav');
+  const menuToggle = document.getElementById('menuToggle');
+
+  function goToPage(id){
+    pages.forEach(p => p.classList.toggle('active', p.id === 'page-' + id));
+    document.querySelectorAll('nav.primary-nav button').forEach(b=>{
+      b.classList.toggle('active', b.dataset.nav === id);
+    });
+    window.scrollTo({top:0, behavior:'smooth'});
+    primaryNav.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded','false');
+  }
+
+  navButtons.forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      goToPage(btn.dataset.nav);
+    });
+  });
+
+  menuToggle.addEventListener('click', ()=>{
+    const open = primaryNav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  // ===========================================================
+  // TEAM GRID — 6 placeholder profile cards
+  // ===========================================================
+  const teamGrid = document.getElementById('teamGrid');
+  const teamCount = 6;
+  for(let i=1; i<=teamCount; i++){
+    const card = document.createElement('div');
+    card.className = 'team-card';
+    card.innerHTML = `
+      <div class="team-photo">Foto do(a)<br>pesquisador(a) ${i}</div>
+      <div class="team-info">
+        <h4>[Placeholder — Nome ${i}]</h4>
+        <span class="team-role">[Placeholder — Função / Cargo]</span>
+        <p class="team-bio">[Placeholder — breve biografia acadêmica e área de atuação do(a) pesquisador(a) no projeto.]</p>
+      </div>
+    `;
+    teamGrid.appendChild(card);
+  }
+</script>
+
+</body>
+</html>
