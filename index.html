@@ -580,7 +580,7 @@
         <div class="hero-copy">
           <div class="eyebrow">Projeto acadêmico &amp; social</div>
           <h1>Conversas que carregam<span class="script">memória, cultura&nbsp;e cuidado</span></h1>
-          <p class="lead">[Placeholder — texto de abertura do projeto: apresente em 2–3 frases a proposta da Nana Buruquê, seu propósito social e sua base acadêmica.]</p>
+          <p class="lead">A Nana Buruquê é uma iniciativa de pesquisa e extensão da PUC-Campinas que dá corpo à Chatbot Nanã, uma inteligência artificial educativa sobre religiões de matriz africana. Nascida como projeto de Iniciação Científica do Grupo de Pesquisa Solaris, a proposta une tecnologia e ancestralidade para combater o racismo religioso e resgatar a memória afro-brasileira, com atenção especial à história de Campinas.</p>
           <div class="hero-actions">
             <button class="btn btn-primary" data-nav="chatbot">Conversar com Nanã</button>
             <button class="btn btn-outline-dark" data-nav="research">Conhecer a pesquisa</button>
@@ -592,7 +592,7 @@
             <span class="blob blob-2"></span>
             <span class="blob blob-3"></span>
           </div>
-          <img class="mascot" src="assets/mascot-sitting.png" alt="Ilustração de Nanã, a avó sábia que conduz o chatbot">
+          <img class="mascot" src="assets/mascot-sitting-hd.png" alt="Ilustração de Nanã, a avó sábia que conduz o chatbot">
         </div>
       </div>
     </section>
@@ -666,10 +666,13 @@
        ========================================================= -->
   <div class="page" id="page-research">
     <section class="block tight section-alt">
-      <div class="container">
-        <div class="eyebrow">Tab 2</div>
-        <h1>Pesquisa &amp; Desenvolvimento</h1>
-        <p style="max-width:680px;">[Placeholder — introdução geral sobre a base científica e acadêmica do desenvolvimento da Chatbot Nanã.]</p>
+      <div class="container" style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+        <img src="assets/mascot-icon-alt1.png" alt="Nanã" style="width:72px; height:auto; flex-shrink:0; border-radius:50%;">
+        <div style="flex:1; min-width:260px;">
+          <div class="eyebrow">Tab 2</div>
+          <h1>Pesquisa &amp; Desenvolvimento</h1>
+          <p style="max-width:680px;">Esta seção reúne os dois projetos de Iniciação Científica que sustentam a Nana Buruquê: <em>"Inteligência artificial para a promoção de diversidade racial e combate à intolerância religiosa na cidade de Campinas"</em> (2025) e sua continuidade, <em>"Chatbots como ferramentas de letramento racial"</em> (2025–2027), conduzidos por Aline dos Santos Alves de Assis sob orientação do Prof. Tarcísio Torres Silva, no Grupo de Pesquisa Solaris (PUC-Campinas).</p>
+        </div>
       </div>
     </section>
 
@@ -678,19 +681,35 @@
         <div class="rd-columns">
           <div class="rd-block">
             <h3><span class="diamond-mark"></span>Fundamentação teórica</h3>
-            <div class="placeholder-text">[Placeholder — referencial teórico: linhas de pesquisa, autores e conceitos que embasam o projeto.]</div>
+            <div class="placeholder-text">
+              <p style="margin-bottom:10px;">O projeto parte do entendimento do racismo religioso como desdobramento do racismo estrutural (Tarcízio Silva, 2021; 2022) e do debate sobre colonialismo digital — o "novo colonialismo dataficado" descrito por Sérgio Silveira (2021) e a atualização de antigas formas de dominação por meio de dados, conforme Faustino e Lippold (2023).</p>
+              <p style="margin-bottom:10px;">A base sobre religiões de matriz africana apoia-se em Reginaldo Prandi (2000; 2001) e, para a Jurema Sagrada, em L'Odò (2017). Some-se a literatura sobre IA para o bem social e vieses algorítmicos (Chui et al., 2018; Cachat-Rosset &amp; Klarsfeld, 2023; Roshanaei, 2024; Sichman, 2021), que reforça a premissa central: tecnologias não são neutras.</p>
+            </div>
           </div>
           <div class="rd-block">
             <h3><span class="diamond-mark"></span>Metodologia de desenvolvimento</h3>
-            <div class="placeholder-text">[Placeholder — descrição da metodologia: etapas de construção da IA, validação de conteúdo, revisão por especialistas.]</div>
+            <div class="placeholder-text">
+              <p style="margin-bottom:10px;"><strong>Etapa 1 —</strong> revisão bibliográfica sobre religiões de matriz africana e sobre a história afro-campineira; construção de um banco de dados em duas camadas (religiões → memória e história local); consultoria do Centro de Estudos Africanos e Afro-Brasileiros e parceria com a Faculdade de Sistemas da Informação (PUC-Campinas). Protótipo conceitual original: front-end em ReactJS, motor conversacional em LLaMA 3 (via Groq API), banco vetorial Milvus, arquitetura RAG.</p>
+              <p style="margin-bottom:10px;"><strong>Etapa 2 —</strong> testes práticos comparando esse protótipo ao Gemini Gems; diante de limitações institucionais para hospedagem em nuvem própria, a pesquisa passou por uma reformulação técnica.</p>
+              <p style="margin:0;"><strong>Etapa 3 (nova) —</strong> um imprevisto no desenvolvimento levou a equipe a não seguir com o código original do protótipo. A ferramenta em funcionamento hoje foi reconstruída com apoio do <strong>Claude</strong> (Anthropic), com o código hospedado e indexado no <strong>GitHub</strong> — de onde também é servido o protótipo desta página — usando <strong>Supabase</strong> como banco de dados/backend e <strong>Vercel</strong> para hospedagem e deploy contínuo da aplicação.</p>
+            </div>
           </div>
           <div class="rd-block">
             <h3><span class="diamond-mark"></span>Curadoria de conteúdo</h3>
-            <div class="placeholder-text">[Placeholder — processo de curadoria histórica e cultural utilizado para treinar/orientar as respostas da chatbot.]</div>
+            <div class="placeholder-text">
+              <p style="margin-bottom:10px;">O banco de dados é organizado por tradição religiosa — Candomblé (nações Ketu, Jeje, Angola, Congo, Ijexá e Efã), Umbanda, Quimbanda, Jurema Sagrada/Catimbó e Vodu Haitiano — documentando cosmovisão, terminologias, práticas rituais e presença regional de cada uma.</p>
+              <p style="margin-bottom:10px;">Para o recorte campineiro, a curadoria se apoia no levantamento <em>"Territórios Negros: nossos passos vêm de longe!"</em> (CALIXTO, 2024), mapeando marcos como a Igreja e o Largo São Benedito, o Cemitério da Saudade, a Igreja do Rosário e o Cemitério dos Homens Pretos, a ARMAC, casas de cultura e escolas de samba locais — validados com consultoria da comendadora Edna Almeida Lourenço e da coordenadora Waleska Miguel Batista.</p>
+              <p style="margin-bottom:10px;">O material de campo também inclui a <em>HQ Territórios Negros</em> (2ª edição), publicação em quadrinhos organizada por Guida Calixto, disponibilizada no acervo digital <strong>Baobáxia</strong> — repositório comunitário livre mantido pela Casa de Cultura Tainã, pensado para socializar saberes e memórias ancestrais entre comunidades quilombolas, indígenas e urbanas. <a href="https://baobaxia.net/api/v2/baobaxia-2014_a954/abdias_d79c/acervo/download/hq-territorios-negros-segunda-e_27de/MD5E-s13883871--0b58e9e76c50f8f103cc7fded6d692af.pdf" target="_blank" rel="noopener" style="color:var(--terracotta); font-weight:600;">Acessar a HQ</a>.</p>
+              <p class="placeholder-text" style="margin:0;">[Placeholder — o repositório multimídia de curadoria no Google Drive já está acessível sem exigir login, mas a listagem de arquivos é gerada por JavaScript e não pode ser lida automaticamente. Para citar os materiais individualmente aqui, compartilhe os links diretos de cada PDF/imagem/áudio, ou os nomes das pastas e arquivos.]</p>
+            </div>
           </div>
           <div class="rd-block">
             <h3><span class="diamond-mark"></span>Avaliação &amp; ética</h3>
-            <div class="placeholder-text">[Placeholder — critérios de avaliação de qualidade, comitês de ética envolvidos e testes com usuários.]</div>
+            <div class="placeholder-text">
+              <p style="margin-bottom:10px;">Ancorada na crítica ao racismo algorítmico (Silva, 2022) e ao colonialismo digital (Silveira, 2021; Faustino &amp; Lippold, 2023), a avaliação parte do princípio de que nenhuma IA tem consciência neutra — os vieses de quem a constrói se refletem em suas respostas.</p>
+              <p style="margin-bottom:10px;">As respostas do chatbot são checadas por comparação com as fontes validadas na revisão bibliográfica e em entrevistas, com testes voltados à detecção de alucinações. Motores diferentes (protótipo próprio em RAG e Gemini Gems) são comparados quanto a controle, personalização e mitigação de vieses racistas, com validação prevista em escolas, centros culturais e, experimentalmente, junto a comunidades de religiões de matriz africana.</p>
+              <p class="placeholder-text" style="margin:0;">[Placeholder — instância ou comitê de ética institucional responsável pela aprovação formal da pesquisa, quando aplicável.]</p>
+            </div>
           </div>
         </div>
       </div>
@@ -703,19 +722,19 @@
         <h2>Marcos do projeto</h2>
         <div class="timeline">
           <div class="timeline-item">
-            <div class="tl-date">[Placeholder — data]</div>
-            <h4>[Placeholder — título do marco]</h4>
-            <p class="placeholder-text">[Placeholder — descrição do marco de desenvolvimento.]</p>
+            <div class="tl-date">Set 2025 – Fev 2026</div>
+            <h4>Fundamentação e protótipo</h4>
+            <p class="placeholder-text">Revisão bibliográfica sobre religiões de matriz africana e sobre Campinas; construção do banco de dados; desenvolvimento do protótipo front-end (ReactJS) e do motor conversacional (LLaMA 3 + Milvus + RAG).</p>
           </div>
           <div class="timeline-item">
-            <div class="tl-date">[Placeholder — data]</div>
-            <h4>[Placeholder — título do marco]</h4>
-            <p class="placeholder-text">[Placeholder — descrição do marco de desenvolvimento.]</p>
+            <div class="tl-date">Mar – Mai 2026</div>
+            <h4>Testes multiplataforma</h4>
+            <p class="placeholder-text">Testes de alucinação e comparação entre o protótipo próprio e o Gemini Gems; adaptação metodológica para ferramentas de automação (Typebot) diante de limitações de hospedagem própria em nuvem.</p>
           </div>
           <div class="timeline-item">
-            <div class="tl-date">[Placeholder — data]</div>
-            <h4>[Placeholder — título do marco]</h4>
-            <p class="placeholder-text">[Placeholder — descrição do marco de desenvolvimento.]</p>
+            <div class="tl-date">Jun – Ago 2026</div>
+            <h4>Reformulação técnica e aplicação com públicos</h4>
+            <p class="placeholder-text">Diante de um imprevisto com o código original, a ferramenta foi reconstruída com apoio do Claude, hospedada e indexada no GitHub, com Supabase como backend e deploy contínuo via Vercel; aplicação experimental em escolas, centros culturais e comunidades de terreiro; redação do relatório final e artigo para publicação.</p>
           </div>
         </div>
       </div>
@@ -727,17 +746,43 @@
        ========================================================= -->
   <div class="page" id="page-team">
     <section class="block tight">
-      <div class="container">
-        <div class="eyebrow">Tab 3</div>
-        <h1>Equipe de Pesquisa</h1>
-        <p style="max-width:680px;">[Placeholder — texto introdutório sobre a equipe multidisciplinar responsável pelo projeto.]</p>
+      <div class="container" style="display:flex; align-items:center; gap:32px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:260px;">
+          <div class="eyebrow">Tab 3</div>
+          <h1>Equipe de Pesquisa</h1>
+          <p style="max-width:680px;">Este projeto é um braço da pesquisa mais ampla do Prof. Tarcísio Torres Silva sobre inteligência artificial e diversidade. Para conhecer o projeto completo, acesse <a href="https://tartorres.wixsite.com/iaparaobem" target="_blank" rel="noopener" style="color:var(--terracotta); font-weight:600;">tartorres.wixsite.com/iaparaobem</a>.</p>
+        </div>
+        <img src="assets/mascot-standing.png" alt="Ilustração de Nanã" style="width:150px; height:auto; flex-shrink:0;">
       </div>
     </section>
 
     <section class="block" style="padding-top:0;">
       <div class="container">
-        <div class="team-grid" id="teamGrid">
-          <!-- 6 placeholder profile cards -->
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-photo">Foto do<br>orientador</div>
+            <div class="team-info">
+              <h4>Tarcísio Torres Silva</h4>
+              <span class="team-role">Orientador</span>
+              <p class="team-bio">Professor pesquisador em dedicação integral na PUC-Campinas. Líder do grupo de pesquisa Sociedade Mediatizada: processos, tecnologia e linguagem. Doutor em Artes Visuais pela Unicamp (2013), com estágio doutoral no Goldsmiths College (Universidade de Londres) e pós-doutorado no Labô/PUC-SP (2023–2024). Coordenou o Programa de Pós-Graduação em Linguagens, Mídia e Arte da PUC-Campinas (2018–2022) e foi professor visitante do Instituto Politécnico de Bragança, Portugal (2022). Autor de <em>"Ativismo digital e imagem: estratégias de engajamento e mobilização em rede"</em> (auxílio FAPESP) e coorganizador da coleção <em>"Redes Digitais e Culturas Ativistas"</em> (2022). Coordena o Grupo de Estudos Raça, Cultura e Decolonalidade na PUC-Campinas (2024–atual) e participa, em 2025, da Cátedra Oscar Sala (IEA-USP) sobre agentes de inteligência artificial. Suas pesquisas atuais giram em torno das relações de poder em mídias digitais, com foco em diversidade, equidade e inclusão, implicações sociais da IA e mídia e relações raciais.</p>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-photo">Foto da<br>pesquisadora</div>
+            <div class="team-info">
+              <h4>Aline dos Santos Alves de Assis</h4>
+              <span class="team-role">Pesquisadora · Bolsista de Iniciação Científica</span>
+              <p class="team-bio">Bacharel em Ciências Sociais e graduanda em Jornalismo pela PUC-Campinas. Atua como pesquisadora de Iniciação Científica (Bolsista Reitoria) no Grupo de Pesquisa Solaris, onde desenvolve este projeto interdisciplinar sobre inteligência artificial, diversidade racial e combate à intolerância religiosa. Possui trajetória acadêmica voltada às Ciências da Religião e à Antropologia, com ênfase em religiões afro-brasileiras, cultura popular e processos migratórios.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rd-block" style="margin-top:32px;">
+          <h3><span class="diamond-mark"></span>Apoio institucional e colaboração</h3>
+          <div class="placeholder-text">
+            <p style="margin-bottom:10px;">O projeto conta com a consultoria do <strong>Centro de Estudos Africanos e Afro-Brasileiros</strong> da PUC-Campinas, por meio da comendadora <strong>Edna Almeida Lourenço</strong> e da coordenadora <strong>Waleska Miguel Batista</strong>, além do apoio técnico do professor pesquisador <strong>Saullo Oliveira</strong> e do curso de Sistemas da Informação da universidade no desenvolvimento do protótipo conversacional.</p>
+            <p style="margin:0;">A identidade visual e o design da interface — incluindo a persona "Nanã Dara" — foram desenvolvidos por uma equipe de alunos da Faculdade de Publicidade e Propaganda: <strong>Giulia Sallum, Mariana Oliveira, Ana Paula Lopes, Elizeu Christian Magalhães, Gabriela Antonio D'Alessio</strong> e <strong>Victor Henrique de Almeida</strong>.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -747,10 +792,13 @@
        PAGE: CONTEXT & HISTORY (TAB 4)
        ========================================================= -->
   <div class="page" id="page-history">
-    <div class="history-hero container">
-      <div class="eyebrow" style="justify-content:center;">Tab 4</div>
-      <h1>Contexto &amp; História</h1>
-      <p>[Placeholder — texto de abertura explicando por que compreender racismo estrutural, diáspora africana e a história local de Campinas é essencial para o projeto.]</p>
+    <div class="history-hero container" style="display:flex; align-items:center; gap:40px; text-align:left; flex-wrap:wrap;">
+      <div style="flex:1.3; min-width:280px;">
+        <div class="eyebrow">Tab 4</div>
+        <h1 style="text-align:left;">Contexto &amp; História</h1>
+        <p style="margin:0;">Compreender o racismo religioso exige olhar para três camadas que se sobrepõem: a estrutura social que sustenta o racismo no Brasil, a história da diáspora africana que formou as religiões de matriz africana, e a memória local de Campinas — cidade cuja riqueza foi construída sobre a mão de obra escravizada e cujo apagamento cultural o projeto busca reverter.</p>
+      </div>
+      <img src="assets/mascot-painting-hd.png" alt="Ilustração ancestral de Nanã" style="flex:.7; min-width:160px; max-width:220px; height:auto;">
     </div>
     <div class="kente-strip"></div>
 
@@ -765,9 +813,14 @@
           </div>
         </div>
         <div class="history-copy">
-          <div class="placeholder-text">[Placeholder — definição e conceitos centrais sobre racismo estrutural: origem do termo, principais autores e como ele se manifesta institucionalmente.]</div>
-          <blockquote class="quote-placeholder">[Placeholder — citação de referência sobre racismo estrutural]</blockquote>
-          <div class="placeholder-text">[Placeholder — texto complementar: dados, exemplos contemporâneos e relação com políticas públicas.]</div>
+          <div class="placeholder-text">Para Silvio Almeida (2019), o racismo não é um desvio de caráter individual, mas um elemento estruturante da própria organização política, econômica e jurídica da sociedade — sua "manifestação normal", e não uma anomalia. É essa estrutura que sustenta o racismo religioso: a perseguição a terreiros, a criminalização de práticas de matriz africana e o apagamento de saberes ancestrais no currículo escolar e no debate público.</div>
+          <blockquote class="quote-placeholder">O racismo não precisa de racistas conscientes para se reproduzir — basta que as instituições continuem funcionando como sempre funcionaram.</blockquote>
+          <div class="placeholder-text">Essa mesma estrutura se estende às tecnologias digitais. Tarcízio Silva (2022) descreve o "racismo algorítmico" como a reprodução desses padrões discriminatórios em sistemas de IA, enquanto Sérgio Silveira (2021) fala de um "novo colonialismo dataficado" e Deivison Faustino e Wallace Lippold (2023) propõem o conceito de colonialismo digital para nomear como antigas formas de dominação se atualizam através de dados. É esse diagnóstico que justifica construir, deliberadamente, uma ferramenta de IA com curadoria histórica e escuta comunitária.</div>
+          <ul style="font-size:.85rem; color:var(--ink-soft); margin-top:18px; padding-left:20px;">
+            <li>ALMEIDA, Silvio. <em>Racismo estrutural.</em> São Paulo: Sueli Carneiro/Pólen, 2019.</li>
+            <li>SILVA, Tarcízio. <em>Racismo algorítmico: inteligência artificial e discriminação nas redes digitais.</em> São Paulo: Edições Sesc São Paulo, 2022.</li>
+            <li>FAUSTINO, Deivison; LIPPOLD, Wallace. <em>Colonialismo digital: por uma crítica hacker-fanoniana.</em> São Paulo: Boitempo, 2023.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -783,9 +836,15 @@
           </div>
         </div>
         <div class="history-copy">
-          <div class="placeholder-text">[Placeholder — panorama histórico da diáspora africana e sua chegada forçada ao Brasil, incluindo rotas, povos e legados culturais.]</div>
-          <blockquote class="quote-placeholder">[Placeholder — citação de referência histórica]</blockquote>
-          <div class="placeholder-text">[Placeholder — texto complementar: resistência, quilombos, contribuições culturais e sociais que moldam o Brasil contemporâneo.]</div>
+          <div class="placeholder-text">A diáspora africana no Brasil não foi um deslocamento único, mas o resultado forçado de séculos de tráfico transatlântico que trouxe povos de diferentes línguas, cosmovisões e nações — iorubás, bantos, fon, entre tantos outros. Kabengele Munanga (2009) descreve como essas origens plurais, e não uma "África" homogênea, formaram as bases culturais, linguísticas e religiosas do Brasil contemporâneo.</div>
+          <blockquote class="quote-placeholder">Não existe uma única raiz africana no Brasil, mas uma trama de origens que a mestiçagem oficial tentou, por muito tempo, simplificar ou apagar.</blockquote>
+          <div class="placeholder-text">Apesar da violência da escravização, essa diáspora produziu resistência e permanência: quilombos, irmandades religiosas negras — como a que ergueu a Igreja do Rosário dos Homens Pretos, citada na história de Campinas — e a preservação, através da oralidade, das religiões de matriz africana que hoje o chatbot busca explicar com rigor histórico, como registram Reginaldo Prandi (2000) e o <em>Dicionário da escravidão e liberdade</em>, organizado por Lilia Schwarcz e Flávio dos Santos Gomes (2018).</div>
+          <ul style="font-size:.85rem; color:var(--ink-soft); margin-top:18px; padding-left:20px;">
+            <li>MUNANGA, Kabengele. <em>Origens africanas do Brasil contemporâneo: histórias, línguas, culturas e civilizações.</em> São Paulo: Global, 2009.</li>
+            <li>MUNANGA, Kabengele. <em>Rediscutindo a mestiçagem no Brasil: identidade nacional versus identidade negra.</em> Belo Horizonte: Autêntica, 2020.</li>
+            <li>SCHWARCZ, Lilia M.; GOMES, Flávio dos Santos (org.). <em>Dicionário da escravidão e liberdade.</em> São Paulo: Companhia das Letras, 2018.</li>
+            <li>PRANDI, Reginaldo. <em>Mitologia dos orixás.</em> São Paulo: Companhia das Letras, 2000.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -801,9 +860,15 @@
           </div>
         </div>
         <div class="history-copy">
-          <div class="placeholder-text">[Placeholder — a construção da cidade de Campinas no contexto da escravidão: economia cafeeira, mão de obra escravizada e formação urbana.]</div>
-          <blockquote class="quote-placeholder">[Placeholder — citação/registro histórico sobre Campinas]</blockquote>
-          <div class="placeholder-text">[Placeholder — texto complementar: marcos, bairros, e legados dessa história na Campinas atual.]</div>
+          <div class="placeholder-text">A riqueza de Campinas foi construída sobre a mão de obra escravizada. O historiador José Roberto do Amaral Lapa (1996) documenta como a expansão da lavoura cafeeira, entre 1850 e 1900, transformou o município em um dos maiores núcleos escravistas do interior paulista — chegando a concentrar, ao fim do período, mais pessoas escravizadas do que qualquer outra cidade da província, segundo levantamentos históricos da economia cafeeira regional (EISENBERG, 1989; MARTINS, s.d.).</div>
+          <blockquote class="quote-placeholder">A opulência da Campinas cafeeira do século XIX teve como contrapartida direta o cativeiro urbano e rural de milhares de pessoas negras.</blockquote>
+          <div class="placeholder-text">Esse passado deixou marcas físicas e simbólicas que o projeto busca resgatar: o Largo e a Igreja de São Benedito, erguida por Mestre Tito, um ex-escravizado; o Cemitério dos Homens Pretos, ligado à Igreja do Rosário; o Cemitério da Saudade; e organizações vivas como a ARMAC (Associação dos Religiosos de Matriz Africana de Campinas e Região). O levantamento <em>"Territórios Negros: nossos passos vêm de longe!"</em>, organizado pela vereadora Guida Calixto (2024), foi a principal referência para mapear esses patrimônios — detalhados na aba de Pesquisa &amp; Desenvolvimento.</div>
+          <ul style="font-size:.85rem; color:var(--ink-soft); margin-top:18px; padding-left:20px;">
+            <li>LAPA, José Roberto do Amaral. <em>A cidade: os cantos e os antros — Campinas 1850-1900.</em> São Paulo: Edusp, 1996.</li>
+            <li>EISENBERG, Peter L. <em>Homens esquecidos: escravos e trabalhadores livres no Brasil — séculos XVIII e XIX.</em> Campinas: Editora da Unicamp, 1989.</li>
+            <li>MARTINS, Valter. <em>Riqueza e mobilidade social na economia cafeeira: Campinas, 1870-1940.</em> Ponta Grossa: UEPG.</li>
+            <li>CALIXTO, Guida (org.). <em>Territórios negros: nossos passos vêm de longe!</em> 2. ed. Campinas: Ed. da Autora, 2024.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -818,7 +883,7 @@
 <footer class="site-footer">
   <div class="container footer-row">
     <div><strong>CHATBOT NANÃ</strong> — Projeto Acadêmico e Social</div>
-    <div>[Placeholder — instituição / ano / créditos]</div>
+    <div>PUC-Campinas · Grupo de Pesquisa Solaris · 2025–2027</div>
   </div>
 </footer>
 
@@ -853,24 +918,7 @@
     menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
-  // ===========================================================
-  // TEAM GRID — 6 placeholder profile cards
-  // ===========================================================
-  const teamGrid = document.getElementById('teamGrid');
-  const teamCount = 6;
-  for(let i=1; i<=teamCount; i++){
-    const card = document.createElement('div');
-    card.className = 'team-card';
-    card.innerHTML = `
-      <div class="team-photo">Foto do(a)<br>pesquisador(a) ${i}</div>
-      <div class="team-info">
-        <h4>[Placeholder — Nome ${i}]</h4>
-        <span class="team-role">[Placeholder — Função / Cargo]</span>
-        <p class="team-bio">[Placeholder — breve biografia acadêmica e área de atuação do(a) pesquisador(a) no projeto.]</p>
-      </div>
-    `;
-    teamGrid.appendChild(card);
-  }
+  // (Team cards are now static real content — see the Equipe de Pesquisa tab markup)
 </script>
 
 </body>
