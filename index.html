@@ -446,6 +446,14 @@
   }
   @media (max-width:880px){ .rd-columns{ grid-template-columns:1fr; } }
 
+  /* Pesquisa & Desenvolvimento — corpo de texto justificado e um pouco maior */
+  #page-research .placeholder-text{
+    text-align:justify;
+    font-size:1.02rem;
+    line-height:1.7;
+  }
+  #page-research .placeholder-text p{ font-size:inherit; }
+
   .timeline{ margin-top:16px; border-left:2px solid var(--gold); padding-left:24px; display:flex; flex-direction:column; gap:26px; }
   .timeline-item{ position:relative; }
   .timeline-item::before{
@@ -604,11 +612,11 @@
         <div>
           <div class="eyebrow">Sobre o projeto</div>
           <h2>Quem é Nanã?</h2>
-          <p class="placeholder-text">[Placeholder — parágrafo introdutório sobre o projeto: contexto institucional, motivação, público-alvo e objetivos gerais da iniciativa. Este texto deve situar o leitor sobre por que a chatbot existe e a quem ela serve.]</p>
-          <p class="placeholder-text">[Placeholder — segundo parágrafo: metodologia geral, parcerias envolvidas e ligação com os temas de racismo estrutural, diáspora africana e história de Campinas.]</p>
+          <p class="placeholder-text">A Nana Buruquê nasceu dentro do Grupo de Pesquisa Solaris, da PUC-Campinas, a partir de um projeto de Iniciação Científica orientado pelo Prof. Tarcísio Torres Silva. A motivação é direta: o racismo religioso contra terreiros de Candomblé, Umbanda e outras tradições de matriz africana segue presente no Brasil, e faltam ferramentas digitais que tratem o tema com profundidade — especialmente com recorte local. A chatbot Nanã existe para servir estudantes, educadores, comunidades de terreiro e qualquer pessoa interessada em aprender sobre essas religiões com respeito e rigor histórico, tendo Campinas como território de referência.</p>
+          <p class="placeholder-text">Metodologicamente, o projeto parte de revisão bibliográfica e consultoria de especialistas — como o Centro de Estudos Africanos e Afro-Brasileiros da PUC-Campinas — para alimentar um banco de dados que une o racismo estrutural (base teórica), a diáspora africana (origem das tradições) e a história local de Campinas (seu período escravocrata e os patrimônios afro-campineiros ainda pouco conhecidos). <span style="opacity:.7;">[Placeholder — texto pode ser aprofundado assim que os arquivos do repositório de curadoria estiverem acessíveis para consulta.]</span></p>
           <div class="intro-stats">
-            <div class="stat-card"><div class="num">00</div><div class="label">Pesquisadores envolvidos</div></div>
-            <div class="stat-card"><div class="num">00</div><div class="label">Meses de desenvolvimento</div></div>
+            <div class="stat-card"><div class="num">02</div><div class="label">Pesquisadores envolvidos</div></div>
+            <div class="stat-card"><div class="num">32</div><div class="label">Meses de desenvolvimento (jan/2025 – ago/2027)</div></div>
             <div class="stat-card"><div class="num">00</div><div class="label">Fontes históricas revisadas</div></div>
           </div>
         </div>
@@ -645,13 +653,7 @@
       <div class="container chatbot-page-grid">
         <div class="chatbot-howto">
           <h3>Como conversar com a Nanã</h3>
-          <ol>
-            <li>[Placeholder — passo 1: como iniciar a conversa]</li>
-            <li>[Placeholder — passo 2: tipos de pergunta recomendados]</li>
-            <li>[Placeholder — passo 3: limites e cuidados éticos da IA]</li>
-            <li>[Placeholder — passo 4: como reportar problemas ou dar feedback]</li>
-          </ol>
-          <div class="placeholder-text" style="margin-top:20px;">[Placeholder — nota sobre privacidade e uso responsável dos dados da conversa.]</div>
+          <div class="placeholder-text" style="margin-top:12px;">Este chatbot é <strong>experimental</strong> e funciona com inteligência artificial: assim como qualquer IA, pode cometer erros, gerar respostas imprecisas ou incompletas. Sempre valide as informações recebidas em fontes confiáveis antes de utilizá-las academicamente ou compartilhá-las.</div>
         </div>
 
         <div class="chat-panel full">
@@ -671,7 +673,7 @@
         <div style="flex:1; min-width:260px;">
           <div class="eyebrow">Tab 2</div>
           <h1>Pesquisa &amp; Desenvolvimento</h1>
-          <p style="max-width:680px;">Esta seção reúne os dois projetos de Iniciação Científica que sustentam a Nana Buruquê: <em>"Inteligência artificial para a promoção de diversidade racial e combate à intolerância religiosa na cidade de Campinas"</em> (2025) e sua continuidade, <em>"Chatbots como ferramentas de letramento racial"</em> (2025–2027), conduzidos por Aline dos Santos Alves de Assis sob orientação do Prof. Tarcísio Torres Silva, no Grupo de Pesquisa Solaris (PUC-Campinas).</p>
+          <p style="max-width:680px;">Esta seção reúne os dois projetos de Iniciação Científica que sustentam a Nana Buruquê: <em>"Inteligência artificial para a promoção de diversidade racial e combate à intolerância religiosa na cidade de Campinas"</em> (iniciado em janeiro de 2025) e sua continuidade, <em>"Chatbots como ferramentas de letramento racial"</em> (com início em setembro de 2026), conduzidos por Aline dos Santos Alves de Assis sob orientação do Prof. Tarcísio Torres Silva, no Grupo de Pesquisa Solaris (PUC-Campinas).</p>
         </div>
       </div>
     </section>
@@ -722,17 +724,17 @@
         <h2>Marcos do projeto</h2>
         <div class="timeline">
           <div class="timeline-item">
-            <div class="tl-date">Set 2025 – Fev 2026</div>
+            <div class="tl-date">Jan 2025 – Ago 2026 · IC I</div>
             <h4>Fundamentação e protótipo</h4>
             <p class="placeholder-text">Revisão bibliográfica sobre religiões de matriz africana e sobre Campinas; construção do banco de dados; desenvolvimento do protótipo front-end (ReactJS) e do motor conversacional (LLaMA 3 + Milvus + RAG).</p>
           </div>
           <div class="timeline-item">
-            <div class="tl-date">Mar – Mai 2026</div>
+            <div class="tl-date">Set 2026 – Fev 2027 · IC II</div>
             <h4>Testes multiplataforma</h4>
-            <p class="placeholder-text">Testes de alucinação e comparação entre o protótipo próprio e o Gemini Gems; adaptação metodológica para ferramentas de automação (Typebot) diante de limitações de hospedagem própria em nuvem.</p>
+            <p class="placeholder-text">Testes de alucinação e comparação entre o protótipo próprio e o Gemini Gems; adaptação metodológica para ferramentas de automação diante de limitações de hospedagem própria em nuvem.</p>
           </div>
           <div class="timeline-item">
-            <div class="tl-date">Jun – Ago 2026</div>
+            <div class="tl-date">Mar – Ago 2027 · IC II</div>
             <h4>Reformulação técnica e aplicação com públicos</h4>
             <p class="placeholder-text">Diante de um imprevisto com o código original, a ferramenta foi reconstruída com apoio do Claude, hospedada e indexada no GitHub, com Supabase como backend e deploy contínuo via Vercel; aplicação experimental em escolas, centros culturais e comunidades de terreiro; redação do relatório final e artigo para publicação.</p>
           </div>
