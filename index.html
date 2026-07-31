@@ -112,7 +112,7 @@
   }
   .nav-row{
     display:flex; align-items:center; justify-content:space-between;
-    padding:16px 24px;
+    padding:8px 24px;
     max-width:var(--container); margin:0 auto;
   }
   .brand{
@@ -120,9 +120,8 @@
     text-decoration:none;
   }
   .brand img.logo-img{
-    height:26px;
+    height:100px;
     width:auto;
-    max-width:160px;
     display:block;
   }
   .brand-mark{
@@ -214,16 +213,17 @@
   }
   .hero-grid{
     display:grid;
-    grid-template-columns:1.15fr .85fr;
+    grid-template-columns:1.3fr .7fr;
+    gap:24px;
     align-items:center;
     min-height:560px;
     position:relative;
     z-index:1;
   }
   .hero-copy{
-    padding:80px 48px 80px 24px;
+    padding:72px 24px 72px 24px;
     display:flex; flex-direction:column; justify-content:center;
-    max-width:620px;
+    max-width:none;
   }
   .hero-copy .eyebrow{ color:var(--sage); }
   .hero-copy h1{
@@ -240,6 +240,8 @@
     color:var(--ink-soft);
     font-size:1.08rem;
     max-width:480px;
+    text-align:justify;
+    text-wrap:pretty;
   }
   .hero-actions{ display:flex; gap:14px; margin-top:12px; flex-wrap:wrap; }
 
@@ -251,7 +253,7 @@
   }
   .hero-visual img.mascot{
     position:relative; z-index:1;
-    max-width:340px;
+    max-width:400px;
     width:100%;
     filter:drop-shadow(0 20px 30px rgba(76,47,26,0.18));
   }
@@ -444,6 +446,7 @@
     color:var(--ink-soft);
     font-size:.9rem;
     background:rgba(86,121,109,0.04);
+    text-align:justify;
   }
   @media (max-width:880px){ .rd-columns{ grid-template-columns:1fr; } }
 
@@ -496,42 +499,6 @@
   .team-bio{ font-size:.88rem; color:var(--ink-soft); margin:0; }
   @media (max-width:960px){ .team-grid{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:620px){ .team-grid{ grid-template-columns:1fr; } }
-
-  /* Produção Científica — cards de publicações/eventos */
-  .publication-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:24px;
-    margin-top:28px;
-  }
-  .publication-card{
-    background:var(--surface);
-    padding:26px;
-    border-radius:var(--radius-m);
-    border:1px solid var(--border-soft);
-    transition:transform .25s ease, box-shadow .25s ease;
-  }
-  .publication-card:hover{
-    transform:translateY(-6px);
-    box-shadow:var(--shadow);
-  }
-  .publication-type{
-    display:inline-block;
-    font-size:.78rem;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    font-weight:600;
-    color:var(--terracotta);
-    margin-bottom:10px;
-  }
-  .publication-card h3{ margin-bottom:10px; font-size:1.05rem; }
-  .publication-card p{ font-size:.92rem; margin-bottom:16px; }
-  .publication-card a{
-    font-weight:600;
-    color:var(--sage);
-    text-decoration:none;
-  }
-  .publication-card a:hover{ color:var(--terracotta); }
 
   /* =========================================================
      HISTORY / CONTEXT PAGE
@@ -599,7 +566,7 @@
 <header class="site-header">
   <div class="nav-row">
     <a href="#" class="brand" data-nav="home">
-      <img class="logo-img" src="assets/logo-wordmark.png" alt="Nana Buruquê">
+      <img class="logo-img" src="assets/logo.png" alt="Nana Buruquê">
     </a>
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰ Menu</button>
     <nav class="primary-nav" id="primaryNav">
@@ -624,8 +591,8 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">Projeto acadêmico &amp; social</div>
-          <h1>Conversas que carregam<span class="script">memória, cultura&nbsp;e cuidado</span></h1>
-          <p class="lead">A Nana Buruquê é uma iniciativa de pesquisa e extensão da PUC-Campinas que dá corpo à Chatbot Nanã, uma inteligência artificial educativa sobre religiões de matriz africana. Nascida como projeto de Iniciação Científica do Grupo de Pesquisa Solaris, a proposta une tecnologia e ancestralidade para combater o racismo religioso e resgatar a memória afro-brasileira, com atenção especial à história de Campinas.</p>
+          <h1>Inteligência artificial para educação e diversidade religiosa</h1>
+          <p class="lead">O Chatbot Nanã é uma inteligência artificial educativa desenvolvida no âmbito da Iniciação Científica da PUC-Campinas. Resultado de pesquisas do Grupo de Pesquisa Solaris, o projeto reúne tecnologia, produção científica e memória afro-brasileira para ampliar o acesso ao conhecimento sobre as religiões de matriz africana, promover o letramento racial e contribuir para o enfrentamento do racismo religioso, com foco na história e no patrimônio cultural de Campinas.</p>
           <div class="hero-actions">
             <button class="btn btn-primary" data-nav="chatbot">Conversar com Nanã</button>
             <button class="btn btn-outline-dark" data-nav="research">Conhecer a pesquisa</button>
@@ -650,7 +617,7 @@
           <div class="eyebrow">Sobre o projeto</div>
           <h2>Quem é Nanã?</h2>
           <p class="placeholder-text">A Nana Buruquê nasceu dentro do Grupo de Pesquisa Solaris, da PUC-Campinas, a partir de um projeto de Iniciação Científica orientado pelo Prof. Tarcísio Torres Silva. A motivação é direta: o racismo religioso contra terreiros de Candomblé, Umbanda e outras tradições de matriz africana segue presente no Brasil, e faltam ferramentas digitais que tratem o tema com profundidade — especialmente com recorte local. A chatbot Nanã existe para servir estudantes, educadores, comunidades de terreiro e qualquer pessoa interessada em aprender sobre essas religiões com respeito e rigor histórico, tendo Campinas como território de referência.</p>
-          <p class="placeholder-text">Metodologicamente, o projeto parte de revisão bibliográfica e consultoria de especialistas — como o Centro de Estudos Africanos e Afro-Brasileiros da PUC-Campinas — para alimentar um banco de dados que une o racismo estrutural (base teórica), a diáspora africana (origem das tradições) e a história local de Campinas (seu período escravocrata e os patrimônios afro-campineiros ainda pouco conhecidos). <span style="opacity:.7;">[Placeholder — texto pode ser aprofundado assim que os arquivos do repositório de curadoria estiverem acessíveis para consulta.]</span></p>
+          <p class="placeholder-text">Metodologicamente, o projeto parte de revisão bibliográfica e consultoria de especialistas — como o Centro de Estudos Africanos e Afro-Brasileiros da PUC-Campinas — para alimentar um banco de dados que une o racismo estrutural (base teórica), a diáspora africana (origem das tradições) e a história local de Campinas (seu período escravocrata e os patrimônios afro-campineiros ainda pouco conhecidos).</p>
           <div class="intro-stats">
             <div class="stat-card"><div class="num">02</div><div class="label">Pesquisadores envolvidos</div></div>
             <div class="stat-card"><div class="num">32</div><div class="label">Meses de desenvolvimento (jan/2025 – ago/2027)</div></div>
@@ -680,7 +647,6 @@
         <div>
           <div class="eyebrow">Tab 1 · <span class="script" style="font-size:1.3em;">nanã chatbot</span></div>
           <h1>Pergunta sem medo, meu bem</h1>
-          <p style="max-width:640px;">[Placeholder — texto de apresentação da experiência conversacional: o que Nanã é capaz de fazer, com qual propósito educativo e social, e como os usuários podem tirar melhor proveito da interação.]</p>
         </div>
       </div>
     </section>
@@ -739,7 +705,6 @@
               <p style="margin-bottom:10px;">O banco de dados é organizado por tradição religiosa — Candomblé (nações Ketu, Jeje, Angola, Congo, Ijexá e Efã), Umbanda, Quimbanda, Jurema Sagrada/Catimbó e Vodu Haitiano — documentando cosmovisão, terminologias, práticas rituais e presença regional de cada uma.</p>
               <p style="margin-bottom:10px;">Para o recorte campineiro, a curadoria se apoia no levantamento <em>"Territórios Negros: nossos passos vêm de longe!"</em> (CALIXTO, 2024), mapeando marcos como a Igreja e o Largo São Benedito, o Cemitério da Saudade, a Igreja do Rosário e o Cemitério dos Homens Pretos, a ARMAC, casas de cultura e escolas de samba locais — validados com consultoria da comendadora Edna Almeida Lourenço e da coordenadora Waleska Miguel Batista.</p>
               <p style="margin-bottom:10px;">O material de campo também inclui a <em>HQ Territórios Negros</em> (2ª edição), publicação em quadrinhos organizada por Guida Calixto, disponibilizada no acervo digital <strong>Baobáxia</strong> — repositório comunitário livre mantido pela Casa de Cultura Tainã, pensado para socializar saberes e memórias ancestrais entre comunidades quilombolas, indígenas e urbanas. <a href="https://baobaxia.net/api/v2/baobaxia-2014_a954/abdias_d79c/acervo/download/hq-territorios-negros-segunda-e_27de/MD5E-s13883871--0b58e9e76c50f8f103cc7fded6d692af.pdf" target="_blank" rel="noopener" style="color:var(--terracotta); font-weight:600;">Acessar a HQ</a>.</p>
-              <p class="placeholder-text" style="margin:0;">[Placeholder — o repositório multimídia de curadoria no Google Drive já está acessível sem exigir login, mas a listagem de arquivos é gerada por JavaScript e não pode ser lida automaticamente. Para citar os materiais individualmente aqui, compartilhe os links diretos de cada PDF/imagem/áudio, ou os nomes das pastas e arquivos.]</p>
             </div>
           </div>
           <div class="rd-block">
@@ -747,7 +712,6 @@
             <div class="placeholder-text">
               <p style="margin-bottom:10px;">Ancorada na crítica ao racismo algorítmico (Silva, 2022) e ao colonialismo digital (Silveira, 2021; Faustino &amp; Lippold, 2023), a avaliação parte do princípio de que nenhuma IA tem consciência neutra — os vieses de quem a constrói se refletem em suas respostas.</p>
               <p style="margin-bottom:10px;">As respostas do chatbot são checadas por comparação com as fontes validadas na revisão bibliográfica e em entrevistas, com testes voltados à detecção de alucinações. Motores diferentes (protótipo próprio em RAG e Gemini Gems) são comparados quanto a controle, personalização e mitigação de vieses racistas, com validação prevista em escolas, centros culturais e, experimentalmente, junto a comunidades de religiões de matriz africana.</p>
-              <p class="placeholder-text" style="margin:0;">[Placeholder — instância ou comitê de ética institucional responsável pela aprovação formal da pesquisa, quando aplicável.]</p>
             </div>
           </div>
         </div>
@@ -778,6 +742,46 @@
         </div>
       </div>
     </section>
+
+    <div class="kente-strip"></div>
+
+    <section class="block">
+      <div class="container">
+        <h2>Publicações e comunicações</h2>
+        <div class="rd-columns">
+          <div class="rd-block">
+            <h3><span class="diamond-mark"></span>Resumos expandidos</h3>
+            <div class="placeholder-text">
+              <p style="margin-bottom:14px;">
+                <strong>Inteligência artificial e colonialismo digital: reflexões a partir do desenvolvimento do Chatbot Nanã.</strong><br>
+                Aline dos Santos Alves de Assis, Tarcisio Torres Silva. 29º Congresso de Ciências da Comunicação na Região Sudeste — Intercom, UniFOA, Volta Redonda/RJ, 14 a 16 de maio de 2026.<br>
+                <a href="assets/docs/intercom-2026-chatbot-nana.pdf" target="_blank" rel="noopener" style="color:var(--terracotta); font-weight:600;">Acessar o trabalho completo (PDF)</a>
+              </p>
+              <p style="margin:0;">
+                <strong>Inteligência artificial no enfrentamento do racismo religioso: chatbot sobre afro-religiosidades em Campinas.</strong><br>
+                Aline dos Santos Alves de Assis, Tarcisio Torres Silva. Resumo expandido — Eixo Temático 2, XVIII Simpósio Nacional da ABCiber, Faculdade Cásper Líbero, São Paulo/SP, 11 a 13 de novembro de 2025.<br>
+                <a href="assets/docs/abciber-2025-resumo-expandido.pdf" target="_blank" rel="noopener" style="color:var(--terracotta); font-weight:600;">Acessar o resumo expandido (PDF)</a>
+              </p>
+            </div>
+          </div>
+          <div class="rd-block">
+            <h3><span class="diamond-mark"></span>Certificados de comunicações</h3>
+            <div class="placeholder-text">
+              <p style="margin-bottom:14px;">
+                <strong>29º Congresso de Ciências da Comunicação na Região Sudeste — Intercom Sudeste 2026.</strong><br>
+                Certificado de apresentação como Expositor(a) no GT08SE Comunicação, educação e desenvolvimento, UniFOA, Volta Redonda/RJ, 14 a 16 de maio de 2026.<br>
+                <a href="assets/docs/certificado-intercom-2026.pdf" target="_blank" rel="noopener" style="color:var(--terracotta); font-weight:600;">Ver certificado (PDF)</a>
+              </p>
+              <p style="margin:0;">
+                <strong>XVIII Simpósio Nacional da ABCiber 2025.</strong><br>
+                Certificado de apresentação de trabalho, Faculdade Cásper Líbero, São Paulo/SP, 11 a 13 de novembro de 2025 (20 horas).<br>
+                <a href="assets/docs/certificado-abciber-2025.pdf" target="_blank" rel="noopener" style="color:var(--terracotta); font-weight:600;">Ver certificado (PDF)</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <!-- =========================================================
@@ -799,7 +803,7 @@
       <div class="container">
         <div class="team-grid">
           <div class="team-card">
-            <div class="team-photo">Foto do<br>orientador</div>
+            <div class="team-photo"><img src="assets/team/tarcisio-torres-silva.jpg" alt="Foto de Tarcísio Torres Silva" style="width:100%; height:100%; object-fit:cover;"></div>
             <div class="team-info">
               <h4>Tarcísio Torres Silva</h4>
               <span class="team-role">Orientador</span>
@@ -807,7 +811,7 @@
             </div>
           </div>
           <div class="team-card">
-            <div class="team-photo">Foto da<br>pesquisadora</div>
+            <div class="team-photo"><img src="assets/team/aline-assis.jpg" alt="Foto de Aline dos Santos Alves de Assis" style="width:100%; height:100%; object-fit:cover;"></div>
             <div class="team-info">
               <h4>Aline dos Santos Alves de Assis</h4>
               <span class="team-role">Pesquisadora · Bolsista de Iniciação Científica</span>
@@ -822,33 +826,6 @@
             <p style="margin-bottom:10px;">O projeto conta com a consultoria do <strong>Centro de Estudos Africanos e Afro-Brasileiros</strong> da PUC-Campinas, por meio da comendadora <strong>Edna Almeida Lourenço</strong> e da coordenadora <strong>Waleska Miguel Batista</strong>, além do apoio técnico do professor pesquisador <strong>Saullo Oliveira</strong> e do curso de Sistemas da Informação da universidade no desenvolvimento do protótipo conversacional.</p>
             <p style="margin:0;">A identidade visual e o design da interface — incluindo a persona "Nanã Dara" — foram desenvolvidos por uma equipe de alunos da Faculdade de Publicidade e Propaganda: <strong>Giulia Sallum, Mariana Oliveira, Ana Paula Lopes, Elizeu Christian Magalhães, Gabriela Antonio D'Alessio</strong> e <strong>Victor Henrique de Almeida</strong>.</p>
           </div>
-        </div>
-
-        <div style="margin-top:48px;">
-          <span class="eyebrow">Pesquisa &amp; Desenvolvimento</span>
-          <h2>Produção Científica</h2>
-          <p style="max-width:680px;">A Nana Buruquê é resultado de uma pesquisa desenvolvida na PUC-Campinas. Aqui estão reunidos os projetos, resumos expandidos, apresentações e demais materiais que documentam a trajetória acadêmica da iniciativa.</p>
-          <div class="publication-grid">
-            <article class="publication-card">
-              <span class="publication-type">Projeto de Pesquisa</span>
-              <h3>Projeto de Iniciação Científica</h3>
-              <p>Documento que apresenta os objetivos, metodologia e desenvolvimento da pesquisa.</p>
-              <a href="docs/projeto-ic.pdf" target="_blank">Ler documento →</a>
-            </article>
-            <article class="publication-card">
-              <span class="publication-type">Resumo Expandido</span>
-              <h3>[Placeholder — nome do congresso]</h3>
-              <p>Resumo apresentado durante o evento científico.</p>
-              <a href="docs/resumo-2025.pdf" target="_blank">Ler resumo →</a>
-            </article>
-            <article class="publication-card">
-              <span class="publication-type">Evento Científico</span>
-              <h3>[Placeholder — nome do evento]</h3>
-              <p>Apresentação da Nana Buruquê e do Chatbot Nanã.</p>
-              <a href="docs/certificado.pdf" target="_blank">Ver certificado →</a>
-            </article>
-          </div>
-          <p style="font-size:.8rem; color:var(--ink-soft); margin-top:14px; font-style:italic;">[Placeholder — envie os nomes reais dos congressos/eventos e os PDFs correspondentes (projeto, resumo expandido, certificado) para substituir os textos acima; os arquivos devem ser enviados para uma pasta "docs" no repositório para que os links funcionem.]</p>
         </div>
       </div>
     </section>
@@ -879,31 +856,14 @@
           </div>
         </div>
         <div class="history-copy">
-          <div class="placeholder-text">Lélia Gonzalez (1984) argumenta que o racismo brasileiro se sustenta sobre o mito da "democracia racial" — uma ideia que nega publicamente o preconceito enquanto o pratica na intimidade das relações sociais, atingindo de forma particular a mulher negra. Lilia Schwarcz (2012) chega a diagnóstico semelhante: no Brasil, a cor é tratada como algo fluido e subjetivo, o que paradoxalmente permite que o racismo se esconda atrás da miscigenação e da suposta ausência de fronteiras raciais rígidas. É essa estrutura, negada e ao mesmo tempo onipresente, que sustenta o racismo religioso: a perseguição a terreiros, a criminalização de práticas de matriz africana e o apagamento de saberes ancestrais no currículo escolar e no debate público.</div>
-          <blockquote class="quote-placeholder">O racismo não precisa ser confessado para se reproduzir — no Brasil, ele é, antes de tudo, negado.</blockquote>
-          <div class="placeholder-text">O geógrafo Milton Santos (1987) acrescenta a dimensão territorial dessa exclusão: para ele, o acesso desigual a bens, serviços e cidadania depende diretamente do lugar que cada pessoa ocupa no espaço — uma lente especialmente útil para pensar Campinas e seus territórios negros historicamente apagados. Essa mesma estrutura se estende às tecnologias digitais: Tarcízio Silva (2022) descreve o "racismo algorítmico" como a reprodução desses padrões discriminatórios em sistemas de IA, enquanto Sérgio Silveira (2021) fala de um "novo colonialismo dataficado" e Deivison Faustino e Wallace Lippold (2023) propõem o conceito de colonialismo digital. É esse diagnóstico que justifica construir, deliberadamente, uma ferramenta de IA com curadoria histórica e escuta comunitária.</div>
+          <div class="placeholder-text">Para Silvio Almeida (2019), o racismo não é um desvio de caráter individual, mas um elemento estruturante da própria organização política, econômica e jurídica da sociedade — sua "manifestação normal", e não uma anomalia. É essa estrutura que sustenta o racismo religioso: a perseguição a terreiros, a criminalização de práticas de matriz africana e o apagamento de saberes ancestrais no currículo escolar e no debate público.</div>
+          <blockquote class="quote-placeholder">O racismo não precisa de racistas conscientes para se reproduzir — basta que as instituições continuem funcionando como sempre funcionaram.</blockquote>
+          <div class="placeholder-text">Essa mesma estrutura se estende às tecnologias digitais. Tarcízio Silva (2022) descreve o "racismo algorítmico" como a reprodução desses padrões discriminatórios em sistemas de IA, enquanto Sérgio Silveira (2021) fala de um "novo colonialismo dataficado" e Deivison Faustino e Wallace Lippold (2023) propõem o conceito de colonialismo digital para nomear como antigas formas de dominação se atualizam através de dados. É esse diagnóstico que justifica construir, deliberadamente, uma ferramenta de IA com curadoria histórica e escuta comunitária.</div>
           <ul style="font-size:.85rem; color:var(--ink-soft); margin-top:18px; padding-left:20px;">
-            <li>GONZALEZ, Lélia. <em>Racismo e sexismo na cultura brasileira.</em> Revista Ciências Sociais Hoje, Anpocs, p. 223-244, 1984.</li>
-            <li>SCHWARCZ, Lilia Moritz. <em>Nem preto nem branco, muito pelo contrário: cor e raça na sociabilidade brasileira.</em> São Paulo: Claro Enigma, 2012.</li>
-            <li>SANTOS, Milton. <em>O espaço do cidadão.</em> São Paulo: Nobel, 1987.</li>
+            <li>ALMEIDA, Silvio. <em>Racismo estrutural.</em> São Paulo: Sueli Carneiro/Pólen, 2019.</li>
             <li>SILVA, Tarcízio. <em>Racismo algorítmico: inteligência artificial e discriminação nas redes digitais.</em> São Paulo: Edições Sesc São Paulo, 2022.</li>
             <li>FAUSTINO, Deivison; LIPPOLD, Wallace. <em>Colonialismo digital: por uma crítica hacker-fanoniana.</em> São Paulo: Boitempo, 2023.</li>
           </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- SUB-SECTION 1.5 — testemunho -->
-    <section class="history-section">
-      <div class="container">
-        <div class="history-copy">
-          <div class="placeholder-text">Ao lado da teoria, o projeto também reconhece o valor do testemunho direto: o diário da catadora de papel Carolina Maria de Jesus, publicado como <em>Quarto de despejo</em> (1960), documenta em primeira pessoa a fome, o racismo e a vida na favela do Canindé (São Paulo) — um contraponto essencial aos dados e conceitos acadêmicos, lembrando que por trás da "estrutura" há vidas concretas.</div>
-          <ul style="font-size:.85rem; color:var(--ink-soft); margin-top:18px; padding-left:20px;">
-            <li>JESUS, Carolina Maria de. <em>Quarto de despejo: diário de uma favelada.</em> São Paulo: Livraria Francisco Alves, 1960.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
         </div>
       </div>
     </section>
